@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Adaptive from "adaptivecards";
-import * as Designer from "../../adaptivecards-designer";
+import * as Designer from "adaptivecards-designer";
 
 var teamsDarkConfiguration = require("../../../../../../samples/HostConfig/microsoft-teams-dark.json");
 var teamsLightConfiguration = require("../../../../../../samples/HostConfig/microsoft-teams-light.json");
