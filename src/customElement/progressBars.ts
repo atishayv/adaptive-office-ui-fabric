@@ -4,8 +4,8 @@ export class ProgressBar extends AC.CardElement {
 
   //#region Schema
 
-  static readonly titleProperty = new AC.StringProperty(AC.Versions.v1_0, 'title', true);
-  static readonly valueProperty = new AC.NumProperty(AC.Versions.v1_0, 'value');
+  static readonly titleProperty = new AC.StringProperty(AC.Versions.v1_2, 'title', true);
+  static readonly valueProperty = new AC.NumProperty(AC.Versions.v1_2, 'value');
 
   @AC.property(ProgressBar.titleProperty)
   get title(): string | undefined {
@@ -88,7 +88,7 @@ export class ProgressBar extends AC.CardElement {
     super.updateLayout(processChildren);
 
     if (this.renderedElement) {
-      if (this.title) {
+      if (!this.title) {
         this._titleElement.style.display = 'none';
       } else {
         this._titleElement.style.removeProperty('display');

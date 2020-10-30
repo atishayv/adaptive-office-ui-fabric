@@ -74,7 +74,7 @@ export default class App extends React.Component {
     designer.sampleCatalogueUrl = window.location.origin + '/sample-catalogue.json';
 
     this.designer = new ACDesigner.CardDesigner(hostContainers);
-
+    
     this.designer.attachTo(document.getElementById('designerRootHost'));
     // ACDesigner.CardDesignerSurface.cardElementPeerRegistry.registerPeer(
     //   ProgressBar,
@@ -82,13 +82,13 @@ export default class App extends React.Component {
     //   'Elements',
     //   'acd-icon-adaptiveCard'
     // );
-    // Adaptive.AdaptiveCard.elementTypeRegistry.registerType('ProgressBar', () => {
-    //   return new ProgressBar();
-    // });
+    // AC.GlobalRegistry.elements.register(ProgressBar.JsonTypeName, ProgressBar);
     //part of basic designer properties
     this.designer.monacoModuleLoaded(monaco);
     //@ts-ignore
     this.designer.buildPalette();
+    this.designer.hostContainer.elementsRegistry.register(ProgressBar.JsonTypeName, ProgressBar);
+
 
     // this.designer.designerSurface.reg
 
