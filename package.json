@@ -5,6 +5,7 @@
   "author": "Atishay Verma",
   "private": true,
   "dependencies": {
+    "@fluentui/react": "^7.149.0",
     "@types/markdown-it": "0.0.7",
     "@types/react": "16.8.22",
     "@types/react-dom": "16.8.4",

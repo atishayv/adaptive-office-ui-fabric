@@ -5,6 +5,8 @@ import markdownit from 'markdown-it';
 import * as ACDesigner from 'adaptivecards-designer';
 import * as AC from 'adaptivecards';
 import { ProgressBar } from './customElement/progressBars';
+
+import { Breadcrumb } from './customElement/uifabric/Breadcrumb/Breadcrumb';
 // import { ProgressBarPeer } from './customElement/progressBarPeer';
 
 // if you want to bundle the designer CSS using something like mini-css-loader:
@@ -88,6 +90,7 @@ export default class App extends React.Component {
     //@ts-ignore
     this.designer.buildPalette();
     this.designer.hostContainer.elementsRegistry.register(ProgressBar.JsonTypeName, ProgressBar);
+    this.designer.hostContainer.elementsRegistry.register(Breadcrumb.JsonTypeName, Breadcrumb);
 
 
     // this.designer.designerSurface.reg
