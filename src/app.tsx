@@ -13,6 +13,16 @@ import { Breadcrumb } from './customElement/uifabric/Breadcrumb/Breadcrumb';
 import 'adaptivecards-designer/dist/adaptivecards-designer.css';
 
 import './app.scss';
+import { CardDesignerSurface, CardElementPeerRegistry } from 'adaptivecards-designer';
+import { BreadcrumbPeer } from './customElement/uifabric/Breadcrumb/BreadcrumbPeer';
+CardDesignerSurface.cardElementPeerRegistry.registerPeer(Breadcrumb, BreadcrumbPeer, "Containers", "acd-icon-adaptiveCard")
+    
+   
+// const originalPeerRegistry =  CardElementPeerRegistry.prototype.reset;
+// CardElementPeerRegistry.prototype.reset = () =>{
+//   originalPeerRegistry();
+//   CardElementPeerRegistry.prototype.registerPeer(Breadcrumb, BreadcrumbPeer, "Containers", "acd-icon-adaptiveCard")
+// }
 
 // No routing as currently it is supposed to be a single page application
 export default class App extends React.Component {
@@ -23,6 +33,7 @@ export default class App extends React.Component {
   }
 
   public componentDidMount(): void {
+    
     // Turn general support for data binding (templating) on or off. When set to false, this flag overrides showDataStructureToolbox and showSampleDataEditorToolbox.
     ACDesigner.GlobalSettings.enableDataBindingSupport = true;
 
@@ -71,7 +82,7 @@ export default class App extends React.Component {
       new ACDesigner.ToastContainer('Windows Notifications (Preview)', 'containers/toast-container.css')
     );
 
-    AC.GlobalRegistry.elements.register(ProgressBar.JsonTypeName, ProgressBar);
+    // AC.GlobalRegistry.elements.register(ProgressBar.JsonTypeName, ProgressBar);
     let designer = new ACDesigner.CardDesigner(hostContainers);
     designer.sampleCatalogueUrl = window.location.origin + '/sample-catalogue.json';
 
@@ -87,14 +98,17 @@ export default class App extends React.Component {
     // AC.GlobalRegistry.elements.register(ProgressBar.JsonTypeName, ProgressBar);
     //part of basic designer properties
     this.designer.monacoModuleLoaded(monaco);
+
+
+this.designer.hostContainer.elementsRegistry.register(Breadcrumb.JsonTypeName, Breadcrumb);
     //@ts-ignore
     this.designer.buildPalette();
-    this.designer.hostContainer.elementsRegistry.register(ProgressBar.JsonTypeName, ProgressBar);
-    this.designer.hostContainer.elementsRegistry.register(Breadcrumb.JsonTypeName, Breadcrumb);
-
-
-    // this.designer.designerSurface.reg
-
+    // this.designer.hostContainer.elementsRegistry.register(ProgressBar.JsonTypeName, ProgressBar);
+    //@ts-ignore
+    // this.designer.designerSurface.addPeer(BreadcrumbPeer);
+     // this.designer.designerSurface.reg
+    //  CardDesignerSurface.cardElementPeerRegistry.registerPeer(Breadcrumb, BreadcrumbPeer, "Containers", "acd-icon-adaptiveCard")
+   
     // this.designer.
   }
 

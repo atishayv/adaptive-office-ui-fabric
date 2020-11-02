@@ -14,7 +14,7 @@
 import * as AC from 'adaptivecards';
 import * as ReactDOM from "react-dom";
 import { getBreadCrumbElement } from './BreadcrumbElement';
-import { initializeIcons } from "@fluentui/react";
+import { IBreadcrumbItem, initializeIcons } from "@fluentui/react";
 initializeIcons()
 
 
@@ -45,7 +45,7 @@ export class Breadcrumb extends AC.CardElement {
 
   protected internalRender(): HTMLElement {
 
-    this._breadCrumbElement = getBreadCrumbElement(JSON.parse(this.items))
+    this._breadCrumbElement = getBreadCrumbElement(this.items)
 
     const element = document.createElement("div");
     ReactDOM.render(this._breadCrumbElement, element);
@@ -64,7 +64,7 @@ export class Breadcrumb extends AC.CardElement {
       if (!this.items) {
         this._breadCrumbElement = null;
       } else {
-        this._breadCrumbElement = getBreadCrumbElement(JSON.parse(this.items))
+        this._breadCrumbElement = getBreadCrumbElement(this.items)
       }
     }
   }
