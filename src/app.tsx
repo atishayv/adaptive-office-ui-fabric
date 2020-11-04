@@ -13,11 +13,18 @@ import { Breadcrumb } from './customElement/uifabric/Breadcrumb/Breadcrumb';
 import 'adaptivecards-designer/dist/adaptivecards-designer.css';
 
 import './app.scss';
-import { CardDesignerSurface, CardElementPeerRegistry } from 'adaptivecards-designer';
+import { CardDesignerSurface } from 'adaptivecards-designer';
+
+import { initializeIcons } from "@fluentui/react";
+initializeIcons()
+
 import { BreadcrumbPeer } from './customElement/uifabric/Breadcrumb/BreadcrumbPeer';
-CardDesignerSurface.cardElementPeerRegistry.registerPeer(Breadcrumb, BreadcrumbPeer, "Containers", "acd-icon-adaptiveCard")
-    
-   
+import { Icon } from './customElement/uifabric/Icon/Icon';
+import { IconPeer } from './customElement/uifabric/Icon/IconPeer';
+  
+CardDesignerSurface.cardElementPeerRegistry.registerPeer(Breadcrumb, BreadcrumbPeer, "Custom Elements", "acd-icon-adaptiveCard")
+CardDesignerSurface.cardElementPeerRegistry.registerPeer(Icon, IconPeer, "Custom Elements", "acd-icon-adaptiveCard")
+  
 // const originalPeerRegistry =  CardElementPeerRegistry.prototype.reset;
 // CardElementPeerRegistry.prototype.reset = () =>{
 //   originalPeerRegistry();
@@ -101,6 +108,7 @@ export default class App extends React.Component {
 
 
 this.designer.hostContainer.elementsRegistry.register(Breadcrumb.JsonTypeName, Breadcrumb);
+this.designer.hostContainer.elementsRegistry.register(Icon.JsonTypeName, Icon);
     //@ts-ignore
     this.designer.buildPalette();
     // this.designer.hostContainer.elementsRegistry.register(ProgressBar.JsonTypeName, ProgressBar);
