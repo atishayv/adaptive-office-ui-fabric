@@ -21,10 +21,19 @@ initializeIcons()
 import { BreadcrumbPeer } from './customElement/uifabric/Breadcrumb/BreadcrumbPeer';
 import { Icon } from './customElement/uifabric/Icon/Icon';
 import { IconPeer } from './customElement/uifabric/Icon/IconPeer';
+import { Spinner } from './customElement/uifabric/Spinner/Spinner';
+import { SpinnerPeer } from './customElement/uifabric/Spinner/SpinnerPeer';
+import { ProgressIndicator } from './customElement/uifabric/ProgressIndicator/ProgressIndicator';
+import { ProgressIndicatorPeer } from './customElement/uifabric/ProgressIndicator/ProgressIndicatorPeer';
+import { Persona } from './customElement/uifabric/Persona/Persona';
+import { PersonaPeer } from './customElement/uifabric/Persona/PersonaPeer';
   
 CardDesignerSurface.cardElementPeerRegistry.registerPeer(Breadcrumb, BreadcrumbPeer, "Custom Elements", "acd-icon-adaptiveCard")
 CardDesignerSurface.cardElementPeerRegistry.registerPeer(Icon, IconPeer, "Custom Elements", "acd-icon-adaptiveCard")
-  
+CardDesignerSurface.cardElementPeerRegistry.registerPeer(Spinner, SpinnerPeer, "Custom Elements", "acd-icon-adaptiveCard")
+CardDesignerSurface.cardElementPeerRegistry.registerPeer(ProgressIndicator, ProgressIndicatorPeer, "Custom Elements", "acd-icon-adaptiveCard")
+CardDesignerSurface.cardElementPeerRegistry.registerPeer(Persona, PersonaPeer, "Custom Elements", "acd-icon-adaptiveCard")
+   
 // const originalPeerRegistry =  CardElementPeerRegistry.prototype.reset;
 // CardElementPeerRegistry.prototype.reset = () =>{
 //   originalPeerRegistry();
@@ -107,10 +116,21 @@ export default class App extends React.Component {
     this.designer.monacoModuleLoaded(monaco);
 
 
-this.designer.hostContainer.elementsRegistry.register(Breadcrumb.JsonTypeName, Breadcrumb);
-this.designer.hostContainer.elementsRegistry.register(Icon.JsonTypeName, Icon);
+    this.designer.hostContainer.elementsRegistry.register(Breadcrumb.JsonTypeName, Breadcrumb);
+    this.designer.hostContainer.elementsRegistry.register(Icon.JsonTypeName, Icon);
+    this.designer.hostContainer.elementsRegistry.register(Spinner.JsonTypeName, Spinner);
+    this.designer.hostContainer.elementsRegistry.register(ProgressIndicator.JsonTypeName, ProgressIndicator);
+    this.designer.hostContainer.elementsRegistry.register(Persona.JsonTypeName, Persona);
     //@ts-ignore
     this.designer.buildPalette();
+
+    this.designer.setCard({
+      "type": "AdaptiveCard",
+      "body": [],
+      "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+      "version": "1.3"
+    })
+
     // this.designer.hostContainer.elementsRegistry.register(ProgressBar.JsonTypeName, ProgressBar);
     //@ts-ignore
     // this.designer.designerSurface.addPeer(BreadcrumbPeer);

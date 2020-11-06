@@ -3,8 +3,8 @@
 //     "type": "AdaptiveCard",
 //     "body": [
 //         {
-//             "type": "Icon",
-//             "iconName": "WindowsLogo"
+//             "type": "Spinner",
+//             "size": "medium"
 //         }
 //     ],
 //     "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
@@ -13,24 +13,24 @@
 
 import * as AC from 'adaptivecards';
 import * as ReactDOM from "react-dom";
-import {getIconElement} from "./IconElement"
+import {getSpinnerElement} from "./SpinnerElement"
 
 
-export class Icon extends AC.CardElement {
-  static readonly JsonTypeName = 'Icon';
+export class Spinner extends AC.CardElement {
+  static readonly JsonTypeName = 'Spinner';
 
   //#region Schema
 
-  static readonly iconName = new AC.StringProperty(AC.Versions.v1_2, 'iconName', true);
+  static readonly size = new AC.StringProperty(AC.Versions.v1_2, 'size', true);
 
-  @AC.property(Icon.iconName)
-  get iconName(): string | undefined {
-    return this.getValue(Icon.iconName);
+  @AC.property(Spinner.size)
+  get size(): string {
+    return this.getValue(Spinner.size);
   }
 
-  set iconName(value: string) {
-    if (this.iconName !== value) {
-      this.setValue(Icon.iconName, value);
+  set size(value: string) {
+    if (this.size !== value) {
+      this.setValue(Spinner.size, value);
 
       this.updateLayout();
     }
@@ -39,20 +39,20 @@ export class Icon extends AC.CardElement {
 
   //#endregion
 
-  private _iconElement: JSX.Element;
+  private _spinnerElement: JSX.Element;
 
   protected internalRender(): HTMLElement {
 
-    this._iconElement = getIconElement(this.iconName)
+    this._spinnerElement = getSpinnerElement(this.size)
 
     const element = document.createElement("div");
-    ReactDOM.render(this._iconElement, element);
+    ReactDOM.render(this._spinnerElement, element);
     element.style.width = "100%";
     return element;
   }
 
   getJsonTypeName(): string {
-    return Icon.JsonTypeName;
+    return Spinner.JsonTypeName;
   }
 
   updateLayout(processChildren: boolean = true) {
