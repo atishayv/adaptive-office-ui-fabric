@@ -27,12 +27,15 @@ import { ProgressIndicator } from './customElement/uifabric/ProgressIndicator/Pr
 import { ProgressIndicatorPeer } from './customElement/uifabric/ProgressIndicator/ProgressIndicatorPeer';
 import { Persona } from './customElement/uifabric/Persona/Persona';
 import { PersonaPeer } from './customElement/uifabric/Persona/PersonaPeer';
+import { Nav } from './customElement/uifabric/Nav/Nav';
+import { NavPeer } from './customElement/uifabric/Nav/NavPeer';
   
 CardDesignerSurface.cardElementPeerRegistry.registerPeer(Breadcrumb, BreadcrumbPeer, "Custom Elements", "acd-icon-adaptiveCard")
 CardDesignerSurface.cardElementPeerRegistry.registerPeer(Icon, IconPeer, "Custom Elements", "acd-icon-adaptiveCard")
 CardDesignerSurface.cardElementPeerRegistry.registerPeer(Spinner, SpinnerPeer, "Custom Elements", "acd-icon-adaptiveCard")
 CardDesignerSurface.cardElementPeerRegistry.registerPeer(ProgressIndicator, ProgressIndicatorPeer, "Custom Elements", "acd-icon-adaptiveCard")
 CardDesignerSurface.cardElementPeerRegistry.registerPeer(Persona, PersonaPeer, "Custom Elements", "acd-icon-adaptiveCard")
+CardDesignerSurface.cardElementPeerRegistry.registerPeer(Nav, NavPeer, "Custom Elements", "acd-icon-adaptiveCard")
    
 // const originalPeerRegistry =  CardElementPeerRegistry.prototype.reset;
 // CardElementPeerRegistry.prototype.reset = () =>{
@@ -77,10 +80,11 @@ export default class App extends React.Component {
     };
 
     let hostContainers: Array<ACDesigner.HostContainer> = [];
-    hostContainers.push(new ACDesigner.WebChatContainer('Bot Framework WebChat', 'containers/webchat-container.css'));
     hostContainers.push(
       new ACDesigner.OutlookContainer('Outlook Actionable Messages', 'containers/outlook-container.css')
     );
+    hostContainers.push(new ACDesigner.WebChatContainer('Bot Framework WebChat', 'containers/webchat-container.css'));
+    
     hostContainers.push(new ACDesigner.TimelineContainer('Windows Timeline', 'containers/timeline-container.css'));
     hostContainers.push(
       new ACDesigner.DarkTeamsContainer('Microsoft Teams - Dark', 'containers/teams-container-dark.css')
@@ -121,6 +125,7 @@ export default class App extends React.Component {
     this.designer.hostContainer.elementsRegistry.register(Spinner.JsonTypeName, Spinner);
     this.designer.hostContainer.elementsRegistry.register(ProgressIndicator.JsonTypeName, ProgressIndicator);
     this.designer.hostContainer.elementsRegistry.register(Persona.JsonTypeName, Persona);
+    this.designer.hostContainer.elementsRegistry.register(Nav.JsonTypeName, Nav);
     //@ts-ignore
     this.designer.buildPalette();
 
